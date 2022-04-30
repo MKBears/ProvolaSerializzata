@@ -1,9 +1,9 @@
 public class Provola {
     public static void main(String[] args) {
-        Server s = new Server();
+        //Server s = new Server();
         Client c = new Client();
 
-        s.start();
+        //s.start();
         c.start();
     }
 }

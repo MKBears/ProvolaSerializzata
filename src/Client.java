@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.InetAddress;
 
 public class Client extends Thread{
     @Override
@@ -11,7 +12,8 @@ public class Client extends Thread{
         ObjectOutputStream out;
 
         try {
-            socket = new Socket("127.0.0.1", 4096);
+
+            socket = new Socket("192.168.43.76", 4096);
             System.out.println("Client: connesso");
             out = new ObjectOutputStream(socket.getOutputStream());
             s = new Student(StudentTypes.DRAGON);
