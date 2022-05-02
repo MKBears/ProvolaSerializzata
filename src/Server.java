@@ -16,7 +16,7 @@ public class Server extends Thread{
         AssistantCard a;
 
         try {
-            InetAddress ip= InetAddress.getLocalHost(); //restituisce l'indirizzo ip del server
+            //InetAddress ip= InetAddress.getLocalHost(); //restituisce l'indirizzo ip del server
             //out.writeObject(ip);
             sSocket = new ServerSocket(4096);
             System.out.println("Server: pronto");

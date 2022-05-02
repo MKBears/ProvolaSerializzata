@@ -1,43 +1,37 @@
 import java.io.IOException;
-
-import java.net.*;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server_Gobbi extends Thread{
-    public void run() {
-        DatagramSocket ds;
-        byte[] receive;
-        DatagramPacket DgReceive;
+    @Override
+    public void run(){
+        ServerSocket sSocket;
+        Socket client;
+        ObjectInputStream in;
+        ObjectOutputStream out;
+        int s;
+        AssistantCard a;
+
         try {
-            ds = new DatagramSocket(4898);
-            receive = new byte[12345];
-
-            //creo un datagram packet per ricevere i dati
-            DgReceive = new DatagramPacket(receive, receive.length);
-            ds.receive(DgReceive);
-
-            System.out.println("Server pronto");
-            //stampo quello che ho ricevuto
-            System.out.println("Client: - " + data(receive));
-
-            receive = new byte[12345];
+            //InetAddress ip= InetAddress.getLocalHost(); //restituisce l'indirizzo ip del server
+            //out.writeObject(ip);
+            sSocket = new ServerSocket(4096);
+            System.out.println("Server: pronto");
+            client = sSocket.accept();
+            //out=new ObjectOutputStream(client.getOutputStream());
+            System.out.println("Server: connesso");
+            in = new ObjectInputStream(client.getInputStream());
+            s = (int)in.readObject();
+            System.out.println("Server: studente ricevuto: "+s);
+            sSocket.close();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-        // A utility method to convert the byte array
-        // data into a string representation.
-        public static StringBuilder data(byte[] a)
-        {
-            if (a == null)
-                return null;
-            StringBuilder ret = new StringBuilder();
-            int i = 0;
-            while (a[i] != 0)
-            {
-                ret.append((char) a[i]);
-                i++;
-            }
-            return ret;
-        }
 }

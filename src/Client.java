@@ -13,7 +13,7 @@ public class Client extends Thread{
 
         try {
 
-            socket = new Socket("192.168.43.76", 4096);
+            socket = new Socket("255.255.255.255", 4096);
             System.out.println("Client: connesso");
             out = new ObjectOutputStream(socket.getOutputStream());
             s = new Student(StudentTypes.DRAGON);
