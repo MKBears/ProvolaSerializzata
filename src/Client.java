@@ -3,7 +3,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.Socket;
 
 public class Client extends Thread{
