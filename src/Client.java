@@ -3,6 +3,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.Socket;
 
 public class Client extends Thread{
@@ -16,8 +17,7 @@ public class Client extends Thread{
 
         try {
             InetSocketAddress addr;
-
-            socket = new Socket("255.255.255.255", 4898);
+            socket = new Socket(new Proxy(null, new InetSocketAddress("255.255.255.255", 4898)));
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             s = new Student(StudentTypes.DRAGON);

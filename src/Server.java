@@ -18,8 +18,9 @@ public class Server extends Thread{
 
 
         try {
-            sSocket = new ServerSocket(4898);
+            sSocket = new ServerSocket();
             ip_mio=new InetSocketAddress(sSocket.getInetAddress(),sSocket.getLocalPort());
+            sSocket.bind(ip_mio);
             System.out.println("Server: pronto all'indirizzo ip  "+sSocket.getLocalSocketAddress());
             client = sSocket.accept();
             System.out.println("Server: connesso");
