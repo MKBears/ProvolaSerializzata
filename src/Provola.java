@@ -1,9 +1,23 @@
 public class Provola {
+    private static Server s;
+    private static Client c;
     public static void main(String[] args) {
-        Server s = new Server();
-        Client c = new Client();
+        Provola p = new Provola();
+        s = new Server();
+        c = new Client();
 
+        p.met();
+    }
+
+    private synchronized void met(){
         s.start();
-        c.start();
+        synchronized (c) {
+            try {
+                c.wait(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            c.start();
+        }
     }
 }
