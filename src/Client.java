@@ -11,7 +11,7 @@ public class Client extends Thread{
         ObjectOutputStream out;
 
         try {
-            socket = new Socket("127.0.0.1", 4096);
+            socket = new Socket("10.169.151.169", 4898);
             System.out.println("Client: connesso");
             out = new ObjectOutputStream(socket.getOutputStream());
             s = new Student(StudentTypes.DRAGON);
