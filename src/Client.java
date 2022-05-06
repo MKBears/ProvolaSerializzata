@@ -16,6 +16,8 @@ public class Client extends Thread{
         ObjectInputStream in;
 
         try {
+            InetSocketAddress addr;
+
             socket = new Socket("255.255.255.255", 4898);
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
@@ -24,7 +26,8 @@ public class Client extends Thread{
             out.writeObject(new InetSocketAddress(Inet4Address.getLocalHost(), socket.getPort()));
 
             try {
-                socket = new Socket((Proxy)in.readObject());
+                addr = (InetSocketAddress) in.readObject();
+                socket = new Socket(addr.getAddress(), addr.getPort());
                 System.out.println("Client: connesso");
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
