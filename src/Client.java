@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.*;
+import java.io.*;
 
 public class Client extends Thread{
     @Override
@@ -17,7 +18,6 @@ public class Client extends Thread{
             socket=new Socket();
             inet=new InetSocketAddress(Inet4Address.getLocalHost(),4500);
             socket.bind(inet);
-            System.out.println("Ho mandato il mandabile");
             byte[] buf = new byte[256];
             // don't wait for request...just send a quote
             String dString = "Hello";
@@ -25,10 +25,11 @@ public class Client extends Thread{
             InetSocketAddress addr;
             //socket = new Socket(new Proxy(null, new InetSocketAddress("255.255.255.255", 4898)));
             DatagramPacket packet;
-            packet= new DatagramPacket(buf, buf.length, InetAddress.getByName("255.255.255.255"), 4500);
-            in = new ObjectInputStream(socket.getInputStream());
+            packet= new DatagramPacket(buf, 0, buf.length, InetAddress.getByName("255.255.255.255"), 4500);
+            /*in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
-            out.writeObject(packet);
+            out.writeObject(packet);*/
+            System.out.println("Ho mandato il mandabile");
             /*s = new Student(StudentTypes.DRAGON);
              a= new AssistantCard(6, 3);
             out.writeObject(new InetSocketAddress(Inet4Address.getLocalHost(), socket.getPort()));

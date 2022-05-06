@@ -31,7 +31,7 @@ public class Server extends Thread{
             packet = new DatagramPacket(buf, 0, 256);
             String received = new String(packet.getData());
             //ip=(InetSocketAddress) in.readObject();
-            System.out.println("Client: ricevuto ip: "+received);
+            System.out.println("Server: ricevuto messaggio broadcast: "+received);
             /*client= new Socket(ip.getAddress(),ip.getPort());
             String h= "Hello Mark";
             out= new ObjectOutputStream(client.getOutputStream());
