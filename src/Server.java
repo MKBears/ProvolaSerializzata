@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
+
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -19,7 +20,7 @@ public class Server extends Thread{
         try {
             sSocket = new ServerSocket(4898);
             ip_mio=new InetSocketAddress(sSocket.getInetAddress(),sSocket.getLocalPort());
-            System.out.println("Server: pronto");
+            System.out.println("Server: pronto all'indirizzo ip  "+sSocket.getLocalSocketAddress());
             client = sSocket.accept();
             System.out.println("Server: connesso");
             in = new ObjectInputStream(client.getInputStream());
@@ -29,10 +30,8 @@ public class Server extends Thread{
             String h= "Hello Mark";
             out= new ObjectOutputStream(client.getOutputStream());
             out.writeObject(ip_mio);
-            //sSocket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+            sSocket.close();
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
