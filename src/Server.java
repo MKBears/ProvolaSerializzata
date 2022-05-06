@@ -20,7 +20,7 @@ public class Server extends Thread{
 
         try { /////////////////////////////SBAGLIATO IL SERVERRRRRRRRRRR
             sSocket = new ServerSocket();
-            ip_mio=new InetSocketAddress(Inet4Address.getLocalHost(),4500);
+            ip_mio=new InetSocketAddress(Inet4Address.getLocalHost(),4898);
             sSocket.bind(ip_mio); //qualcosa di sbagliato qui
             System.out.println("Server: pronto all'indirizzo ip  "+sSocket.getLocalSocketAddress());
             client = sSocket.accept();
@@ -31,7 +31,7 @@ public class Server extends Thread{
             packet=(DatagramPacket) in.readObject();
             String received = new String(packet.getData());
             //ip=(InetSocketAddress) in.readObject();
-            System.out.println("Client: ricevuto ip: "+received);
+            System.out.println("Server: ricevuto messaggio broadcast: "+received);
             /*client= new Socket(ip.getAddress(),ip.getPort());
             String h= "Hello Mark";
             out= new ObjectOutputStream(client.getOutputStream());
