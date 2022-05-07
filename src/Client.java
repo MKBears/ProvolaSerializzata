@@ -11,10 +11,7 @@ public class Client extends Thread{
         byte[] addr;
 
         try {
-            addr= new byte[4];
-            addr[0]=(byte)192;
-            addr[1]=(byte)168;
-            addr[2]=(byte)16;
+            addr= InetAddress.getLocalHost().getAddress();
             addr[3]=(byte)255;
             sokk=new DatagramSocket();
             System.out.println("Inizializzato");
