@@ -19,20 +19,21 @@ public class Server extends Thread{
             ip_mio=new InetSocketAddress(Inet4Address.getLocalHost(),4898);
             sSocket.bind(ip_mio);
             sock = new DatagramSocket(4898);
-            System.out.println("Creato datagram socket");
+            System.out.println("Server: Creato datagram socket");
             byte[] buf = new byte[1];
-            System.out.println("Creato buffer");
+            System.out.println("Server: Creato buffer");
             packet = new DatagramPacket(buf, 0, 1);
-            System.out.println("Creato pacchetto");
+            System.out.println("Server: Creato pacchetto");
+            System.out.println("Server: pronto @ "+ip_mio.getAddress().getHostAddress());
             sock.receive(packet);
-            System.out.println("Ricevuto pacchetto");
+            System.out.println("Server: Ricevuto pacchetto");
             System.out.println("Server: ricevuto messaggio broadcast: "+packet.getAddress()+", "+packet.getPort());
             DatagramPacket packet1 = new DatagramPacket(buf, 0, buf.length, packet.getAddress(), packet.getPort());
             sock.send(packet1);
             client = sSocket.accept();
             in = new ObjectInputStream(client.getInputStream());
             try {
-                System.out.println("Connesso: "+in.readObject());
+                System.out.println("Server: Connesso: "+in.readObject());
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

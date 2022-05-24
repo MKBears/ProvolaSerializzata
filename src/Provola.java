@@ -4,9 +4,11 @@ public class Provola {
     public static void main(String[] args) {
         Provola p = new Provola();
         s = new Server();
-        c = new Client();
+        //c = new Client();
 
-        p.met();
+        //p.met();
+        s.start();
+        //c.start();
     }
 
     private synchronized void met(){
