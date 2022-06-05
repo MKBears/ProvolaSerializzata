@@ -34,6 +34,11 @@ public class Server extends Thread{
             in = new ObjectInputStream(client.getInputStream());
             try {
                 System.out.println("Server: Connesso: "+in.readObject());
+                Cloud[] clouds = (Cloud[]) in.readObject();
+
+                for (Cloud cloud : clouds) {
+                    System.out.println(cloud.toString());
+                }
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

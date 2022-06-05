@@ -10,4 +10,8 @@ public class Student implements Serializable {
     public StudentTypes getType() {
         return type;
     }
+
+    public String toString() {
+        return type.toString()+"(X)"+"\u001B[0m";
+    }
 }
